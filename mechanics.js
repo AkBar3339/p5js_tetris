@@ -272,6 +272,8 @@ function newGame() {
     startGame()
     ended = false;
     holded = false;
+    holding = false;
+    displayHold();
     loop();
 }
 
