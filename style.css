@@ -28,12 +28,41 @@ body {
     font-family: 'Nunito';
     color: floralwhite;
 }
+#txt2 {
+    text-align: center;
+    font-size: 30pt;
+    font-family: 'Nunito';
+    padding: 0px 10px 20px 10px;
+    color: floralwhite;
+}
 #container {
     width: 640px;
-    margin: 0px auto;
+    margin: 20px auto;
     margin-bottom: 0px;
     padding: 0;
+    float: none;
+    clear: both;
 }
+.instructions {
+    width: 1000px;
+    margin: 20px auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    float: none;
+    clear: both;
+    font-family: 'Nunito';
+    text-align: center;
+}
+table {
+    font-size: 18pt;
+    margin: 0px auto;
+    width: 50%;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+tr:nth-child(even) {background-color: #f2f2f2}
 .header {
     background-image: linear-gradient(120deg, #155799, #159957);
     color: #fff; 
@@ -91,6 +120,7 @@ a {
 
 .site-footer { 
     padding-top: 2rem;
+    clear: both;
     padding-bottom: 2rem;
     width: 950px;
     font-family: 'Nunito';

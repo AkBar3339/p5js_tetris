@@ -129,10 +129,11 @@ function randomFigure() {
 function gameplay() {
     var nextFigure = leatestFigure + 1;
     if (nextFigure == 0 || !figures[leatestFigure].isMoving) {
-        figureTypes.splice(0, 1);
+        figureTypes.splice(1, 1);
         figureTypes[4] = randomFigure();
-        figures[nextFigure] = new Figure(figureTypes[0], nextFigure);
-        displayNext()
+        figures[nextFigure] = new Figure(figureTypes[1], nextFigure);
+        displayNext();
+        holded = false;
     }
 }
 
@@ -167,42 +168,30 @@ function displayPrep() {
         imgSections[0].style.height = "800px";
         for (var i = 1; i < 5; i++) {
             imgSections[i].style.width = "160px";
-            if (i < 4) {
-            imgSections[i].style.height = "160px";
-            imgSections[i].style.margin = "20px 40px";
-            }
-            else {
-                imgSections[i].style.height = "120px";
-                imgSections[i].style.margin = "20px 40px 0px 40px";
-            }
+            imgSections[i].style.height = "120px";
+            imgSections[i].style.margin = "20px 40px 30px 40px";
         }
     }
     else {
         document.getElementById("txt").style.fontSize = "20pt";
+        document.getElementById("txt2").style.fontSize = "20pt";
         document.getElementById("txt1").style.fontSize = "15pt";
         document.getElementById("container").height = "600px";
         document.getElementById("container").width = "480px";
+        document.getElementById("container").margin = "0 auto"; 
         imgSections[0].style.width = "180px";
         imgSections[0].style.height = "600px";
         for (var i = 1; i < 5; i++) {
             imgSections[i].style.width = "120px";
-//            imgSections[i].style.height = "120px";
-//            imgSections[i].style.margin = "15px 30px";
-            if (i < 4) {
-            imgSections[i].style.height = "120px";
-            imgSections[i].style.margin = "15px 30px";
-            }
-            else {
-                imgSections[i].style.height = "90px";
-                imgSections[i].style.margin = "15px 30px 0px 30px";
-            }
+            imgSections[i].style.height = "90px";
+            imgSections[i].style.margin = "15px 30px 22px 30px";
         }
     }
 }
 
 function displayNext() {
     if (canvH == 800) {
-        for (var i = 1; i < 5; i++) {
+        for (var i = 2; i < 5; i++) {
             switch (figureTypes[i]) {
                 case 0:
                     imgSections[i].style.backgroundImage = "url('" + images[0] + "')";
@@ -225,11 +214,14 @@ function displayNext() {
                 case 6:
                     imgSections[i].style.backgroundImage = "url('" + images[6] + "')";
                     break;
+                case undefined:
+                    
+                    break;
             }
         }
     }
     else {
-        for (var i = 1; i < 5; i++) {
+        for (var i = 2; i < 5; i++) {
             switch (figureTypes[i]) {
                 case 0:
                     imgSections[i].style.backgroundImage = "url('" + images[0] + "')";
@@ -259,6 +251,9 @@ function displayNext() {
                     imgSections[i].style.backgroundImage = "url('" + images[6] + "')";
                     imgSections[i].style.backgroundSize = "75%";
                     break;
+                case undefined:
+                    
+                    break;
             }
         }
     }
@@ -276,5 +271,97 @@ function newGame() {
     position = 16;
     startGame()
     ended = false;
+    holded = false;
     loop();
+}
+
+function hold() {
+    if (!holding && !holded) {
+        figureTypes[0] = figureTypes[1];
+        figureTypes.splice(1, 1);
+        figureTypes[4] = randomFigure();
+        figures.pop();
+        figures[leatestFigure] = new Figure(figureTypes[1], leatestFigure);
+        displayNext();
+        displayHold();
+        holding = true;
+        holded = true;
+    }
+    if (holding && !holded) {
+        var temp = figureTypes[0];
+        figureTypes[0] = figureTypes[1];
+        figureTypes[1] = temp;
+        figures.pop();
+        figures[leatestFigure] = new Figure(figureTypes[1], leatestFigure);
+        displayNext();
+        displayHold();
+        holding = true;
+        holded = true;
+    }
+}
+
+function displayHold() {
+    if (canvH == 800) {
+        switch (figureTypes[0]) {
+                case 0:
+                    imgSections[1].style.backgroundImage = "url('" + images[0] + "')";
+                    break;
+                case 1:
+                    imgSections[1].style.backgroundImage = "url('" + images[1] + "')";
+                    break;
+                case 2:
+                    imgSections[1].style.backgroundImage = "url('" + images[2] + "')";
+                    break;
+                case 3:
+                    imgSections[1].style.backgroundImage = "url('" + images[3] + "')";
+                    break;
+                case 4:
+                    imgSections[1].style.backgroundImage = "url('" + images[4] + "')";
+                    break;
+                case 5:
+                    imgSections[1].style.backgroundImage = "url('" + images[5] + "')";
+                    break;
+                case 6:
+                    imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
+                    break;
+                case undefined:
+                    
+                    break;
+            }
+        }
+    else {
+        switch (figureTypes[0]) {
+            case 0:
+                imgSections[1].style.backgroundImage = "url('" + images[0] + "')";
+                imgSections[1].style.backgroundSize = "100%";
+                break;
+            case 1:
+                imgSections[1].style.backgroundImage = "url('" + images[1] + "')";
+                imgSections[1].style.backgroundSize = "50%";
+                break;
+            case 2:
+                imgSections[1].style.backgroundImage = "url('" + images[2] + "')";
+                imgSections[1].style.backgroundSize = "75%";
+                break;
+            case 3:
+                imgSections[1].style.backgroundImage = "url('" + images[3] + "')";
+                imgSections[1].style.backgroundSize = "75%";
+                break;
+            case 4:
+                imgSections[1].style.backgroundImage = "url('" + images[4] + "')";
+                imgSections[1].style.backgroundSize = "75%";
+                break;
+            case 5:
+                imgSections[1].style.backgroundImage = "url('" + images[5] + "')";
+                imgSections[1].style.backgroundSize = "75%";
+                break;
+            case 6:
+                imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
+                imgSections[1].style.backgroundSize = "75%";
+                break;
+            case undefined:
+                    
+                break;
+        }
+    }
 }

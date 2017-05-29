@@ -16,10 +16,12 @@ var images = [];
 var sounds = []; //0- lose, 1- rotate, 2- hit, 3- score++
 var ended = false;
 var bestScore = 0;
+var holding = false;
+var holded = false;
 
 function preload() {
     window.addEventListener("keydown", function(event) {
-        if (event.keyCode === DOWN_ARROW || event.keyCode === 32) {
+        if (event.keyCode === DOWN_ARROW || event.keyCode === 32 || event.keyCode === 123) {
             event.preventDefault();
         }
     })
@@ -38,19 +40,19 @@ function preload() {
     for (var i = 0; i < 4; i++) {
         sounds[i] = loadSound('assets/sounds/' + i + '.mp3');
     }
-}
-
-function startGame() {
-    for (var i = 0; i < 5; i++) {
-        figureTypes[i] = randomFigure();
-    }
     imgSections[0] = document.getElementById("right_panel")
     for (var i = 1; i < 5; i++) {
         var str = "figure_" + i
         imgSections[i] = document.getElementById(str);
     }
     displayPrep();
-    figures[figureNo] = new Figure(figureTypes[0], figureNo);
+}
+
+function startGame() {
+    for (var i = 1; i < 5; i++) {
+        figureTypes[i] = randomFigure();
+    }
+    figures[figureNo] = new Figure(figureTypes[1], figureNo);
     textSize(32);
     textAlign(CENTER);
     displayNext();
@@ -118,6 +120,9 @@ function keyPressed() {
         if (ended) {
             newGame();
         }
+    }
+    else if (keyCode === 32) {
+        hold();
     }
 }
 
