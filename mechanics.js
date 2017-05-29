@@ -327,7 +327,7 @@ function displayHold() {
                     imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
                     break;
                 case undefined:
-                    imgSections[1].style.backgroundImage = none;
+                    imgSections[1].style.backgroundImage = "none";
                     break;
             }
         }
@@ -362,7 +362,7 @@ function displayHold() {
                 imgSections[1].style.backgroundSize = "75%";
                 break;
             case undefined:
-                imgSections[1].style.backgroundImage = none;
+                imgSections[1].style.backgroundImage = "none";
                 break;
         }
     }
