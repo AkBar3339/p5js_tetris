@@ -260,7 +260,6 @@ function displayNext() {
 }
 
 function newGame() {
-    canvas = undefined;
     figures = [];
     figureTypes = [];
     figureNo = 0;
