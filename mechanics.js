@@ -272,11 +272,13 @@ function newGame() {
     startGame()
     ended = false;
     holded = false;
+    holding = false;
+    displayHold();
     loop();
 }
 
 function hold() {
-    if (!holding && !holded) {
+    if (!holding && !holded && !ended) {
         figureTypes[0] = figureTypes[1];
         figureTypes.splice(1, 1);
         figureTypes[4] = randomFigure();
@@ -287,7 +289,7 @@ function hold() {
         holding = true;
         holded = true;
     }
-    if (holding && !holded) {
+    if (holding && !holded && !ended) {
         var temp = figureTypes[0];
         figureTypes[0] = figureTypes[1];
         figureTypes[1] = temp;
@@ -325,7 +327,7 @@ function displayHold() {
                     imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
                     break;
                 case undefined:
-                    
+                    imgSections[1].style.backgroundImage = "none";
                     break;
             }
         }
@@ -360,7 +362,7 @@ function displayHold() {
                 imgSections[1].style.backgroundSize = "75%";
                 break;
             case undefined:
-                    
+                imgSections[1].style.backgroundImage = "none";
                 break;
         }
     }
