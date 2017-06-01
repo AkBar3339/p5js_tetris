@@ -15,7 +15,7 @@ function Figure(type, index) {
     this.soundIsPlayed = false;
 
     // Type: 0- bar, 1- square, 2- Z-shape, 3- S-shape, 4- L-shape, 5- J-shape, 6- T-shape
-    // idk wtf am i doing ;)
+    // idk wtf am i doing ;) kappa
 
     this.fall = function() {
         if (this.hitBottom || this.collision) { //Temp fo debuging
