@@ -20,7 +20,7 @@ var holding = false;
 var holded = false;
 
 function preload() {
-    window.addEventListener("keydown", function(event) {
+    window.addEventListener("keydown", function (event) {
         if (event.keyCode === DOWN_ARROW || event.keyCode === 32 || event.keyCode === 123) {
             event.preventDefault();
         }
@@ -63,8 +63,7 @@ function setup() {
     if (canvH == 800) {
         main.style.width = "400px";
         main.style.height = "800px";
-    }
-    else {
+    } else {
         main.style.width = "300px";
         main.style.height = "600px";
     }
@@ -85,9 +84,13 @@ function draw() {
     gameOver();
     stroke(0);
     fill(255);
-    if (score >= 1000) { position = 40; }
-    else if (score >= 100) { position = 32; }
-    else if (score >= 10) { position = 24; }
+    if (score >= 1000) {
+        position = 40;
+    } else if (score >= 100) {
+        position = 32;
+    } else if (score >= 10) {
+        position = 24;
+    }
     textSize(32);
     text(score, position, 32);
     gameplay();
@@ -101,28 +104,24 @@ function keyPressed() {
             figures[leatestFigure].moveRight();
             figures[leatestFigure].collisionMove = false;
         }
-    }
-    else if (keyCode === RIGHT_ARROW) {
+    } else if (keyCode === RIGHT_ARROW) {
         figures[leatestFigure].moveRight();
         figures[leatestFigure].moveCollision();
         if (figures[leatestFigure].collisionMove) {
             figures[leatestFigure].moveLeft();
             figures[leatestFigure].collisionMove = false;
         }
-    }
-    else if (keyCode === DOWN_ARROW) {
+    } else if (keyCode === DOWN_ARROW) {
         var speed = 6;
         prevTimer = timer;
         if (timer > speed) {
             timer = speed;
         }
-    }
-    else if (keyCode === ENTER) {
+    } else if (keyCode === ENTER) {
         if (ended) {
             newGame();
         }
-    }
-    else if (keyCode === 32) {
+    } else if (keyCode === 32) {
         hold();
     }
 }
@@ -143,10 +142,8 @@ function keyTyped() {
         if (figures[leatestFigure].rotationCollision) {
             figures[leatestFigure].rotateRight();
             figures[leatestFigure].rotationCollision = false;
-        }
-        else sounds[1].play();
-    }
-    else if (key === 'x') {
+        } else sounds[1].play();
+    } else if (key === 'x') {
         figures[leatestFigure].rotateRight();
         figures[leatestFigure].rotationFFCollision();
         if (!figures[leatestFigure].rotationCollision) {
@@ -155,7 +152,6 @@ function keyTyped() {
         if (figures[leatestFigure].rotationCollision) {
             figures[leatestFigure].rotateLeft();
             figures[leatestFigure].rotationCollision = false;
-        }
-        else sounds[1].play();
+        } else sounds[1].play();
     }
 }

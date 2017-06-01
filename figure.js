@@ -1,5 +1,5 @@
 function Figure(type, index) {
-    this.pos = createVector((5 * blockSize), - (2 * blockSize));
+    this.pos = createVector((5 * blockSize), -(2 * blockSize));
     this.blocks = [];
     this.isMoving = true;
     this.isFalling = true;
@@ -17,7 +17,7 @@ function Figure(type, index) {
     // Type: 0- bar, 1- square, 2- Z-shape, 3- S-shape, 4- L-shape, 5- J-shape, 6- T-shape
     // idk wtf am i doing ;) kappa
 
-    this.fall = function() {
+    this.fall = function () {
         if (this.hitBottom || this.collision) { //Temp fo debuging
             if (frameCount % (timer * 0.5) == 0) {
                 this.isFalling = false;
@@ -32,8 +32,9 @@ function Figure(type, index) {
                         this.soundIsPlayed = true;
                     }
                     fullRow();
+                } else {
+                    this.isFalling = true;
                 }
-                else { this.isFalling = true; }
                 deleteEmpty();
             }
         }
@@ -46,12 +47,13 @@ function Figure(type, index) {
                 for (var i = 0; i < this.blocks.length; i++) {
                     this.blocks[i].pos.y -= blockSize;
                 }
+            } else {
+                this.pos.y += blockSize;
             }
-            else { this.pos.y += blockSize; }
         }
     }
 
-    this.moveLeft = function() {
+    this.moveLeft = function () {
         if (this.isMoving && !this.hitLeft) {
             for (var i = 0; i < this.blocks.length; i++) {
                 this.blocks[i].pos.x -= blockSize;
@@ -61,7 +63,7 @@ function Figure(type, index) {
         }
     }
 
-    this.moveRight = function() {
+    this.moveRight = function () {
         if (this.isMoving && !this.hitRight) {
             for (var i = 0; i < this.blocks.length; i++) {
                 this.blocks[i].pos.x += blockSize;
@@ -71,7 +73,7 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateLeft = function() {
+    this.rotateLeft = function () {
         if (this.isMoving) {
             switch (this.type) {
                 case 0:
@@ -119,7 +121,7 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateRight = function() {
+    this.rotateRight = function () {
         if (this.isMoving) {
             switch (this.type) {
                 case 0:
@@ -167,7 +169,7 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateBar = function(direction) {
+    this.rotateBar = function (direction) {
         switch (direction) {
             case 0: //down horizontal
                 for (var i = 0; i < this.blocks.length; i++) {
@@ -184,14 +186,14 @@ function Figure(type, index) {
                 this.rotationState = 1;
                 break;
             case 2: //up horizontal
-                for (var i = 0; i <this.blocks.length; i++) {
+                for (var i = 0; i < this.blocks.length; i++) {
                     this.blocks[i].pos.x = this.pos.x + ((i - 2) * blockSize);
                     this.blocks[i].pos.y = this.pos.y - blockSize;
                 }
                 this.rotationState = 2;
                 break;
             case 3: //right vertical
-                for (var i = 0; i <this.blocks.length; i++) {
+                for (var i = 0; i < this.blocks.length; i++) {
                     this.blocks[i].pos.x = this.pos.x;
                     this.blocks[i].pos.y = this.pos.y + ((i - 2) * blockSize);
                 }
@@ -200,7 +202,7 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateZ = function(direction) {
+    this.rotateZ = function (direction) {
         switch (direction) {
             case 0: //bottom Z
                 for (var i = 0; i < 2; i++) {
@@ -249,7 +251,7 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateS = function(direction) {
+    this.rotateS = function (direction) {
         switch (direction) {
             case 0: //bottom S
                 for (var i = 0; i < 2; i++) {
@@ -298,8 +300,8 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateL = function(direction) {
-        switch(direction) {
+    this.rotateL = function (direction) {
+        switch (direction) {
             case 0:
                 for (var i = 0; i < 3; i++) {
                     this.blocks[i].pos.x = this.pos.x + ((i - 1) * blockSize);
@@ -339,8 +341,8 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateJ = function(direction) {
-        switch(direction) {
+    this.rotateJ = function (direction) {
+        switch (direction) {
             case 0:
                 for (var i = 0; i < 3; i++) {
                     this.blocks[i].pos.x = this.pos.x + ((i - 1) * blockSize);
@@ -380,8 +382,8 @@ function Figure(type, index) {
         }
     }
 
-    this.rotateT = function(direction) {
-        switch(direction) {
+    this.rotateT = function (direction) {
+        switch (direction) {
             case 0:
                 for (var i = 0; i < 3; i++) {
                     this.blocks[i].pos.x = this.pos.x + ((i - 1) * blockSize);
@@ -421,7 +423,7 @@ function Figure(type, index) {
         }
     }
 
-    this.createBar = function() {
+    this.createBar = function () {
         var blockColor = color(0, 188, 212); //Material design cyan 500
         var blockStrokeColor = color(0, 131, 143); //Material design cyan 800
         for (var i = 0; i < 4; i++) {
@@ -429,7 +431,7 @@ function Figure(type, index) {
         }
     }
 
-    this.createSquare = function() {
+    this.createSquare = function () {
         var blockColor = color(255, 235, 59); //Material design yellow 500
         var blockStrokeColor = color(249, 168, 37); //Material design yellow 800
         for (var i = 0; i < 2; i++) {
@@ -438,7 +440,7 @@ function Figure(type, index) {
         }
     }
 
-    this.createZ = function() {
+    this.createZ = function () {
         var blockColor = color(244, 67, 54); //Material design red 500
         var blockStrokeColor = color(198, 40, 40); //Material design red 800
         for (var i = 0; i < 2; i++) {
@@ -449,7 +451,7 @@ function Figure(type, index) {
         }
     }
 
-    this.createS = function() {
+    this.createS = function () {
         var blockColor = color(76, 175, 80); //Material design green 500
         var blockStrokeColor = color(46, 125, 50); //Material design green 800
         for (var i = 0; i < 2; i++) {
@@ -460,7 +462,7 @@ function Figure(type, index) {
         }
     }
 
-    this.createL = function() {
+    this.createL = function () {
         var blockColor = color(255, 152, 0); //Material design orange 500
         var blockStrokeColor = color(239, 108, 0); //Material design orange 800
         for (var i = 0; i < 3; i++) {
@@ -469,7 +471,7 @@ function Figure(type, index) {
         this.blocks[3] = new Block(this.pos.x - blockSize, this.pos.y + blockSize, blockColor, blockStrokeColor, 3, this.index);
     }
 
-    this.createJ = function() {
+    this.createJ = function () {
         var blockColor = color(63, 81, 181); //Material design indigo 500
         var blockStrokeColor = color(40, 53, 147); //Material design indigo 800
         for (var i = 0; i < 3; i++) {
@@ -478,7 +480,7 @@ function Figure(type, index) {
         this.blocks[3] = new Block(this.pos.x + blockSize, this.pos.y + blockSize, blockColor, blockStrokeColor, 3, this.index);
     }
 
-    this.createT = function() {
+    this.createT = function () {
         var blockColor = color(103, 58, 183); //Material design deep purple 500
         var blockStrokeColor = color(69, 39, 160); //Material design deep purple 800
         for (var i = 0; i < 3; i++) {
@@ -487,15 +489,15 @@ function Figure(type, index) {
         this.blocks[3] = new Block(this.pos.x, this.pos.y + blockSize, blockColor, blockStrokeColor, i, this.index);
     }
 
-    this.show = function() {
+    this.show = function () {
         for (var i = 0; i < 4; i++) {
-            if (!this.blocks[i].ph){
+            if (!this.blocks[i].ph) {
                 this.blocks[i].show();
             }
         }
     }
 
-    this.hit = function() {
+    this.hit = function () {
         for (var i = 0; i < this.blocks.length; i++) {
             if (!this.blocks[i].ph && this.blocks[i].blockHitL()) {
                 this.hitLeft = true;
@@ -512,8 +514,7 @@ function Figure(type, index) {
             if (!this.blocks[i].ph && this.blocks[i].blockHitB()) {
                 this.hitBottom = true;
                 break;
-            }
-            else {
+            } else {
                 this.hitBottom = false;
             }
         }

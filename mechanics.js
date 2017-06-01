@@ -1,4 +1,4 @@
-Figure.prototype.figureFigureCollision = function(variable) {
+Figure.prototype.figureFigureCollision = function (variable) {
     this.figuresCount = figures.length - 1;
     this.variable = variable;
 
@@ -16,7 +16,7 @@ Figure.prototype.figureFigureCollision = function(variable) {
     }
 }
 
-Figure.prototype.rotationFFCollision = function() {
+Figure.prototype.rotationFFCollision = function () {
     this.figuresCount = figures.length - 1;
 
     for (var i = 0; i < this.figuresCount; i++) {
@@ -31,7 +31,7 @@ Figure.prototype.rotationFFCollision = function() {
     }
 }
 
-Figure.prototype.rotationWallCollision = function() {
+Figure.prototype.rotationWallCollision = function () {
     for (var i = 0; i < this.blocks.length; i++) {
         this.rotationCollision = collideLineRect(-1, 0, -1, height, this.blocks[i].pos.x, this.blocks[i].pos.y, blockSize - 1, blockSize);
         if (this.rotationCollision) break;
@@ -42,7 +42,7 @@ Figure.prototype.rotationWallCollision = function() {
     }
 }
 
-Figure.prototype.moveCollision = function() {
+Figure.prototype.moveCollision = function () {
     this.figuresCount = figures.length - 1;
 
     for (var i = 0; i < this.figuresCount; i++) {
@@ -93,11 +93,9 @@ function fullRow() {
     }
     if (tetris == 4) {
         score += 40;
-    }
-    else if (tetris == 3) {
+    } else if (tetris == 3) {
         score += 10;
-    }
-    else if (tetris == 2) {
+    } else if (tetris == 2) {
         score += 5;
     }
 }
@@ -106,12 +104,12 @@ function deleteEmpty() {
     for (var i = figures.length - 1; i >= 0; i--) {
         for (var j = figures[i].blocks.length - 1; j >= 0; j--) {
             if (!figures[i].blocks[j].ph) break;
-            else if (j == 0)  {
+            else if (j == 0) {
                 figures.splice(i, 1);
                 leatestFigure -= 1;
                 for (var k = i; k < figures.length; k++) {
                     figures[k].index = k;
-                    for (var l = 0; l < figures[k].blocks.length; l++)  {
+                    for (var l = 0; l < figures[k].blocks.length; l++) {
                         if (!figures[k].blocks[l].ph) {
                             figures[k].blocks[l].figureIndex = k;
                         }
@@ -138,25 +136,25 @@ function gameplay() {
 }
 
 function gameOver() {
-     if (figures[leatestFigure].isMoving == false && figures[leatestFigure].pos.y < 0) {
-         console.log("Wyłącz konsolę laciu i nie czituj!")
-         stroke(0);
-         fill(255);
-         text("Game over!", width * 0.5, height * 0.5);
-         textSize(20);
-         text("Press Enter to play again.", width * 0.5, (height * 0.5) + 30);
-         noLoop();
-         sounds[0].play();
-         if (score > bestScore) {
-             bestScore = score;
-             document.getElementById("txt1").innerHTML = "Best score: " + bestScore;
-         }
-         ended = true;
-     }
+    if (figures[leatestFigure].isMoving == false && figures[leatestFigure].pos.y < 0) {
+        console.log("Wyłącz konsolę laciu i nie czituj!")
+        stroke(0);
+        fill(255);
+        text("Game over!", width * 0.5, height * 0.5);
+        textSize(20);
+        text("Press Enter to play again.", width * 0.5, (height * 0.5) + 30);
+        noLoop();
+        sounds[0].play();
+        if (score > bestScore) {
+            bestScore = score;
+            document.getElementById("txt1").innerHTML = "Best score: " + bestScore;
+        }
+        ended = true;
+    }
 }
 
 function speedUp() {
-    if (timer > 4){
+    if (timer > 4) {
         prevTimer -= 2;
         timer -= 2;
     }
@@ -171,8 +169,7 @@ function displayPrep() {
             imgSections[i].style.height = "120px";
             imgSections[i].style.margin = "20px 40px 30px 40px";
         }
-    }
-    else {
+    } else {
         document.getElementById("txt").style.fontSize = "20pt";
         document.getElementById("txt2").style.fontSize = "20pt";
         document.getElementById("txt1").style.fontSize = "15pt";
@@ -219,8 +216,7 @@ function displayNext() {
                     break;
             }
         }
-    }
-    else {
+    } else {
         for (var i = 2; i < 5; i++) {
             switch (figureTypes[i]) {
                 case 0:
@@ -305,33 +301,32 @@ function hold() {
 function displayHold() {
     if (canvH == 800) {
         switch (figureTypes[0]) {
-                case 0:
-                    imgSections[1].style.backgroundImage = "url('" + images[0] + "')";
-                    break;
-                case 1:
-                    imgSections[1].style.backgroundImage = "url('" + images[1] + "')";
-                    break;
-                case 2:
-                    imgSections[1].style.backgroundImage = "url('" + images[2] + "')";
-                    break;
-                case 3:
-                    imgSections[1].style.backgroundImage = "url('" + images[3] + "')";
-                    break;
-                case 4:
-                    imgSections[1].style.backgroundImage = "url('" + images[4] + "')";
-                    break;
-                case 5:
-                    imgSections[1].style.backgroundImage = "url('" + images[5] + "')";
-                    break;
-                case 6:
-                    imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
-                    break;
-                case undefined:
-                    imgSections[1].style.backgroundImage = "none";
-                    break;
-            }
+            case 0:
+                imgSections[1].style.backgroundImage = "url('" + images[0] + "')";
+                break;
+            case 1:
+                imgSections[1].style.backgroundImage = "url('" + images[1] + "')";
+                break;
+            case 2:
+                imgSections[1].style.backgroundImage = "url('" + images[2] + "')";
+                break;
+            case 3:
+                imgSections[1].style.backgroundImage = "url('" + images[3] + "')";
+                break;
+            case 4:
+                imgSections[1].style.backgroundImage = "url('" + images[4] + "')";
+                break;
+            case 5:
+                imgSections[1].style.backgroundImage = "url('" + images[5] + "')";
+                break;
+            case 6:
+                imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
+                break;
+            case undefined:
+                imgSections[1].style.backgroundImage = "none";
+                break;
         }
-    else {
+    } else {
         switch (figureTypes[0]) {
             case 0:
                 imgSections[1].style.backgroundImage = "url('" + images[0] + "')";
