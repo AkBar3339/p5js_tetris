@@ -260,6 +260,7 @@ function displayNext() {
 }
 
 function newGame() {
+    canvas = undefined;
     figures = [];
     figureTypes = [];
     figureNo = 0;
@@ -271,8 +272,6 @@ function newGame() {
     startGame()
     ended = false;
     holded = false;
-    holding = false;
-    displayHold();
     loop();
 }
 
@@ -326,7 +325,7 @@ function displayHold() {
                     imgSections[1].style.backgroundImage = "url('" + images[6] + "')";
                     break;
                 case undefined:
-                    imgSections[1].style.backgroundImage = "none";
+                    
                     break;
             }
         }
@@ -361,7 +360,7 @@ function displayHold() {
                 imgSections[1].style.backgroundSize = "75%";
                 break;
             case undefined:
-                imgSections[1].style.backgroundImage = "none";
+                    
                 break;
         }
     }

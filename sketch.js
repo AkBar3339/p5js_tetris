@@ -46,6 +46,7 @@ function preload() {
         imgSections[i] = document.getElementById(str);
     }
     displayPrep();
+    imgSections[0].style.background = "linear-gradient(#26A69A, #EC407A)";
 }
 
 function startGame() {
