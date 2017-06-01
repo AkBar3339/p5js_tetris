@@ -13,9 +13,10 @@ function Figure(type, index) {
     this.collisionMove = false;
     this.rotationCollision = false;
     this.soundIsPlayed = false;
-    
+
     // Type: 0- bar, 1- square, 2- Z-shape, 3- S-shape, 4- L-shape, 5- J-shape, 6- T-shape
-    
+    // idk wtf am i doing ;)
+
     this.fall = function() {
         if (this.hitBottom || this.collision) { //Temp fo debuging
             if (frameCount % (timer * 0.5) == 0) {
@@ -38,18 +39,18 @@ function Figure(type, index) {
         }
         if (this.isFalling && frameCount % timer == 0) {
             for (var i = 0; i < this.blocks.length; i++) {
-                this.blocks[i].pos.y += blockSize;   
+                this.blocks[i].pos.y += blockSize;
             }
             this.figureFigureCollision(1);
             if (this.collision) {
                 for (var i = 0; i < this.blocks.length; i++) {
-                    this.blocks[i].pos.y -= blockSize;       
+                    this.blocks[i].pos.y -= blockSize;
                 }
             }
             else { this.pos.y += blockSize; }
         }
     }
-    
+
     this.moveLeft = function() {
         if (this.isMoving && !this.hitLeft) {
             for (var i = 0; i < this.blocks.length; i++) {
@@ -59,7 +60,7 @@ function Figure(type, index) {
             this.hitRight = false;
         }
     }
-    
+
     this.moveRight = function() {
         if (this.isMoving && !this.hitRight) {
             for (var i = 0; i < this.blocks.length; i++) {
@@ -69,7 +70,7 @@ function Figure(type, index) {
             this.hitLeft = false;
         }
     }
-    
+
     this.rotateLeft = function() {
         if (this.isMoving) {
             switch (this.type) {
@@ -117,7 +118,7 @@ function Figure(type, index) {
             this.hitRight = false;
         }
     }
-    
+
     this.rotateRight = function() {
         if (this.isMoving) {
             switch (this.type) {
@@ -163,22 +164,22 @@ function Figure(type, index) {
             }
             this.hitLeft = false;
             this.hitRight = false;
-        } 
+        }
     }
-    
+
     this.rotateBar = function(direction) {
         switch (direction) {
-            case 0: //down horizontal 
+            case 0: //down horizontal
                 for (var i = 0; i < this.blocks.length; i++) {
-                    this.blocks[i].pos.x = this.pos.x + ((i - 2) * blockSize); 
-                    this.blocks[i].pos.y = this.pos.y; 
+                    this.blocks[i].pos.x = this.pos.x + ((i - 2) * blockSize);
+                    this.blocks[i].pos.y = this.pos.y;
                 }
                 this.rotationState = 0;
                 break;
             case 1: //left vertical
-                for (var i = 0; i < this.blocks.length; i++) { 
+                for (var i = 0; i < this.blocks.length; i++) {
                     this.blocks[i].pos.x = this.pos.x - blockSize;
-                    this.blocks[i].pos.y = this.pos.y + ((i - 2) * blockSize); 
+                    this.blocks[i].pos.y = this.pos.y + ((i - 2) * blockSize);
                 }
                 this.rotationState = 1;
                 break;
@@ -198,13 +199,13 @@ function Figure(type, index) {
                 break;
         }
     }
-    
+
     this.rotateZ = function(direction) {
         switch (direction) {
             case 0: //bottom Z
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i].pos.x = this.pos.x + ((i - 1) * blockSize);
-                    this.blocks[i].pos.y = this.pos.y;                                           
+                    this.blocks[i].pos.y = this.pos.y;
                 }
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i + 2].pos.x = this.pos.x + (i * blockSize);
@@ -226,7 +227,7 @@ function Figure(type, index) {
             case 2: //upper Z
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i].pos.x = this.pos.x + ((i - 1) * blockSize);
-                    this.blocks[i].pos.y = this.pos.y - blockSize;                                           
+                    this.blocks[i].pos.y = this.pos.y - blockSize;
                 }
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i + 2].pos.x = this.pos.x + (i * blockSize);
@@ -247,13 +248,13 @@ function Figure(type, index) {
                 break;
         }
     }
-    
+
     this.rotateS = function(direction) {
         switch (direction) {
             case 0: //bottom S
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i].pos.x = this.pos.x + (i * blockSize);
-                    this.blocks[i].pos.y = this.pos.y;                                           
+                    this.blocks[i].pos.y = this.pos.y;
                 }
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i + 2].pos.x = this.pos.x + ((i - 1) * blockSize);
@@ -275,7 +276,7 @@ function Figure(type, index) {
             case 2: //upper S
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i].pos.x = this.pos.x + (i * blockSize);
-                    this.blocks[i].pos.y = this.pos.y - blockSize;                                           
+                    this.blocks[i].pos.y = this.pos.y - blockSize;
                 }
                 for (var i = 0; i < 2; i++) {
                     this.blocks[i + 2].pos.x = this.pos.x + ((i - 1) * blockSize);
@@ -296,7 +297,7 @@ function Figure(type, index) {
                 break;
         }
     }
-    
+
     this.rotateL = function(direction) {
         switch(direction) {
             case 0:
@@ -337,7 +338,7 @@ function Figure(type, index) {
                 break;
         }
     }
-    
+
     this.rotateJ = function(direction) {
         switch(direction) {
             case 0:
@@ -378,7 +379,7 @@ function Figure(type, index) {
                 break;
         }
     }
-    
+
     this.rotateT = function(direction) {
         switch(direction) {
             case 0:
@@ -419,7 +420,7 @@ function Figure(type, index) {
                 break;
         }
     }
-    
+
     this.createBar = function() {
         var blockColor = color(0, 188, 212); //Material design cyan 500
         var blockStrokeColor = color(0, 131, 143); //Material design cyan 800
@@ -427,7 +428,7 @@ function Figure(type, index) {
             this.blocks[i] = new Block(this.pos.x + ((i - 2) * blockSize), this.pos.y, blockColor, blockStrokeColor, i, this.index);
         }
     }
-    
+
     this.createSquare = function() {
         var blockColor = color(255, 235, 59); //Material design yellow 500
         var blockStrokeColor = color(249, 168, 37); //Material design yellow 800
@@ -436,7 +437,7 @@ function Figure(type, index) {
             this.blocks[i + 2] = new Block(this.pos.x + ((i - 1) * blockSize), this.pos.y, blockColor, blockStrokeColor, i + 2, this.index);
         }
     }
-    
+
     this.createZ = function() {
         var blockColor = color(244, 67, 54); //Material design red 500
         var blockStrokeColor = color(198, 40, 40); //Material design red 800
@@ -447,7 +448,7 @@ function Figure(type, index) {
             this.blocks[i + 2] = new Block(this.pos.x + (i * blockSize), this.pos.y + blockSize, blockColor, blockStrokeColor, i + 2, this.index);
         }
     }
-    
+
     this.createS = function() {
         var blockColor = color(76, 175, 80); //Material design green 500
         var blockStrokeColor = color(46, 125, 50); //Material design green 800
@@ -458,7 +459,7 @@ function Figure(type, index) {
             this.blocks[i + 2] = new Block(this.pos.x + ((i - 1) * blockSize), this.pos.y + blockSize, blockColor, blockStrokeColor, i + 2, this.index);
         }
     }
-    
+
     this.createL = function() {
         var blockColor = color(255, 152, 0); //Material design orange 500
         var blockStrokeColor = color(239, 108, 0); //Material design orange 800
@@ -467,7 +468,7 @@ function Figure(type, index) {
         }
         this.blocks[3] = new Block(this.pos.x - blockSize, this.pos.y + blockSize, blockColor, blockStrokeColor, 3, this.index);
     }
-    
+
     this.createJ = function() {
         var blockColor = color(63, 81, 181); //Material design indigo 500
         var blockStrokeColor = color(40, 53, 147); //Material design indigo 800
@@ -475,8 +476,8 @@ function Figure(type, index) {
             this.blocks[i] = new Block(this.pos.x + ((i - 1) * blockSize), this.pos.y, blockColor, blockStrokeColor, i, this.index);
         }
         this.blocks[3] = new Block(this.pos.x + blockSize, this.pos.y + blockSize, blockColor, blockStrokeColor, 3, this.index);
-    } 
-    
+    }
+
     this.createT = function() {
         var blockColor = color(103, 58, 183); //Material design deep purple 500
         var blockStrokeColor = color(69, 39, 160); //Material design deep purple 800
@@ -485,7 +486,7 @@ function Figure(type, index) {
         }
         this.blocks[3] = new Block(this.pos.x, this.pos.y + blockSize, blockColor, blockStrokeColor, i, this.index);
     }
-    
+
     this.show = function() {
         for (var i = 0; i < 4; i++) {
             if (!this.blocks[i].ph){
@@ -493,7 +494,7 @@ function Figure(type, index) {
             }
         }
     }
-    
+
     this.hit = function() {
         for (var i = 0; i < this.blocks.length; i++) {
             if (!this.blocks[i].ph && this.blocks[i].blockHitL()) {
@@ -517,9 +518,9 @@ function Figure(type, index) {
             }
         }
     }
-    
+
     switch (type) {
-        case 0: 
+        case 0:
             this.createBar();
             break;
         case 1:
@@ -532,13 +533,13 @@ function Figure(type, index) {
             this.createS();
             break;
         case 4:
-            this.createL();     
+            this.createL();
             break;
         case 5:
             this.createJ();
             break;
         case 6:
-            this.createT();    
+            this.createT();
             break;
     }
 }

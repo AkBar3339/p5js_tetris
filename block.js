@@ -3,14 +3,14 @@ function Block(x, y, color, strokeColor, index, figureIndex) {
     this.index = index;
     this.figureIndex = figureIndex;
     this.ph = false;
-    
+
     this.show = function() {
         fill(color);
         strokeWeight(2);
         stroke(strokeColor);
-        rect(this.pos.x, this.pos.y, blockSize, blockSize) 
+        rect(this.pos.x, this.pos.y, blockSize, blockSize)
     }
-    
+
     this.blockHitL = function() {
         return collideLineRect(0, 0, 0, height, this.pos.x, this.pos.y, blockSize, blockSize);
     }

@@ -1,7 +1,7 @@
 Figure.prototype.figureFigureCollision = function(variable) {
     this.figuresCount = figures.length - 1;
     this.variable = variable;
-    
+
     for (var i = 0; i < this.figuresCount; i++) {
         for (var j = 0; j < figures[i].blocks.length; j++) {
             for (var k = 0; k < this.blocks.length; k++) {
@@ -18,7 +18,7 @@ Figure.prototype.figureFigureCollision = function(variable) {
 
 Figure.prototype.rotationFFCollision = function() {
     this.figuresCount = figures.length - 1;
-    
+
     for (var i = 0; i < this.figuresCount; i++) {
         for (var j = 0; j < figures[i].blocks.length; j++) {
             for (var k = 0; k < this.blocks.length; k++) {
@@ -44,7 +44,7 @@ Figure.prototype.rotationWallCollision = function() {
 
 Figure.prototype.moveCollision = function() {
     this.figuresCount = figures.length - 1;
-    
+
     for (var i = 0; i < this.figuresCount; i++) {
         for (var j = 0; j < figures[i].blocks.length; j++) {
             for (var k = 0; k < this.blocks.length; k++) {
@@ -85,7 +85,7 @@ function fullRow() {
             for (var i = 0; i < figures.length; i++) {
                 for (var j = 0; j < figures[i].blocks.length; j++) {
                     if (figures[i].blocks[j].pos.y < k && !figures[i].blocks[j].ph) {
-                        figures[i].blocks[j].pos.y += blockSize; 
+                        figures[i].blocks[j].pos.y += blockSize;
                     }
                 }
             }
@@ -178,7 +178,7 @@ function displayPrep() {
         document.getElementById("txt1").style.fontSize = "15pt";
         document.getElementById("container").height = "600px";
         document.getElementById("container").width = "480px";
-        document.getElementById("container").margin = "0 auto"; 
+        document.getElementById("container").margin = "0 auto";
         imgSections[0].style.width = "180px";
         imgSections[0].style.height = "600px";
         for (var i = 1; i < 5; i++) {
@@ -215,7 +215,7 @@ function displayNext() {
                     imgSections[i].style.backgroundImage = "url('" + images[6] + "')";
                     break;
                 case undefined:
-                    
+
                     break;
             }
         }
@@ -252,7 +252,7 @@ function displayNext() {
                     imgSections[i].style.backgroundSize = "75%";
                     break;
                 case undefined:
-                    
+
                     break;
             }
         }

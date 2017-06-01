@@ -76,7 +76,7 @@ function setup() {
 
 function draw() {
     background(51);
-    leatestFigure = figures.length - 1; 
+    leatestFigure = figures.length - 1;
     for (var i = 0; i < figures.length; i++) {
         figures[i].show();
         figures[i].hit();
